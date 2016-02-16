@@ -33,8 +33,33 @@ router.route('/bears')
 				res.json(bear);
 			}	
 
-		});
+	})
 	});
+	router.route('/bears')
+
+    // create a bear (accessed at POST http://localhost:8080/api/bears)
+
+	.get(function(req, res){
+		Bear.find(function(err, bears){
+			if(err){
+				console.log(err);
+			}else {
+				res.json(bears);
+			}	
+		})
+	});
+
+	router.route('/bears/:bear_id')
+	.get(function(req, res){
+		Bear.findById(req.params.bear_id,function(err, bear){
+		if(err) {
+			console.log(err);
+		} else {
+			res.json(bear);
+		}
+	  })
+	})
+
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
