@@ -11,19 +11,19 @@ app.use(bodyParser.urlencoded({ extended: true })); //mounting middleware
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
-app.get('/', function(req,res){
+app.get('/', function(req, res){
 	res.render('index', {title: 'hellloooo world'});	
 });
 
-var port = process.env.PORT || 8080; 		//lets us see environment of process in this case of the port 
-
-var router = express.Router();             
-
-router.use(function(req, res, next){
-    // do logging
-    console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
+app.get('/about', function(req,res){
+    var data = {};
+    data.title = "What time is it";
+    data.time = new Date();
+    res.render('about', data);
 });
+
+var port = process.env.PORT || 8080;
+var router = express.Router();
 
 app.use('/api', bearRouter);
 
