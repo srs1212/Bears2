@@ -5,12 +5,13 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/animals');
 
 var bearRouter= require('./routes/bear');
-var Bear = ('./app/models/bear');
+var Bear = require('./app/models/bear');
 
 app.use(bodyParser.urlencoded({ extended: true })); //mounting middleware
 app.use(bodyParser.json());
 
 app.set('view engine', 'ejs');
+
 app.get('/', function(req, res){
 	res.render('index', {title: 'hellloooo world'});	
 });
@@ -21,6 +22,18 @@ app.get('/about', function(req,res){
     data.time = new Date();
     res.render('about', data);
 });
+
+app.get('/bears', function(req, res){
+
+		Bear.find(function(err, bears){
+			if(err){
+				console.log(err);
+			}else {
+				res.render('bears', {bears: bears})
+			}	
+		});
+});
+
 
 var port = process.env.PORT || 8080;
 var router = express.Router();
