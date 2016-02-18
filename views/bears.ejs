@@ -47,7 +47,7 @@
 						<th>Delete a Bear</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="bearTable">
 					<% for(var i = 0; i < bears.length; i++) {
 						%>
 					<tr id="<%= bears[i]._id %>">
@@ -68,22 +68,22 @@
 			<div class="container center">
 				<div class="row">
 	 				<div class="col-md-6">
-	 					<form action="/api/bears" method="POST" class="form-inline" role="form">
+	 					<form class="form-inline" role="form"> 
 	 					
 	 						<div class="form-group">
 	 							<label class="sr-only" for="">label</label>
-	 							<input name= "name" type="text" class="form-control" id="bearName" placeholder="Name">
+	 							<input required name="name" type="text" class="form-control" id="name" placeholder="Name">
 	 						</div> 
 	 						<div class="form-group">
-	 							<label name= "age"class="sr-only" for="">label</label>
-	 							<input type="text" class="form-control" id="bearAge" placeholder="Age">
+	 							<label name= "age" class="sr-only" for="">label</label>
+	 							<input required type="text" name="age" class="form-control" id="age" placeholder="Age">
 	 						</div> 
 	 						<div class="form-group">
 	 							<label class="sr-only" for="">label</label>
-	 							<input name= "gender" type="text" class="form-control" id="bearGender" placeholder="Gender">
+	 							<input required name="gender" type="text" class="form-control" id="gender" placeholder="Gender">
 	 						</div> 
 	 					
-							<button type="submit" class="btn btn-primary">Submit</button> 		
+							<button type="submit" id="addBear" class="btn btn-primary">Add Bear</button> 		
 	 					</form>
 	 				</div>
 				</div>
