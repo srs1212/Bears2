@@ -1,6 +1,6 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
-var bodyParser = require('body-parser');    // configure app to use bodyParser()
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/animals');
 
@@ -9,6 +9,7 @@ var Bear = require('./app/models/bear');
 
 app.use(bodyParser.urlencoded({ extended: true })); //mounting middleware
 app.use(bodyParser.json());
+app.use(express.static('public')); 
 
 app.set('view engine', 'ejs');
 
